@@ -3,10 +3,11 @@ package project;
 public class RunEntityState {
 
 	public static void main(String[] args) {
-		runTestWithApprovedFlow();
-		runTestWithDisapprovedFlow();
+//		runTestWithApprovedFlow();
+//		runTestWithDisapprovedFlow();
 //		runTestWithBadFlow(); 
 //		runTestWithBadFlowTryingDuplicateState();
+		runTestWithDoubleTaxFlow();
 	}
 
 	private static void runTestWithBadFlow() {
@@ -36,6 +37,17 @@ public class RunEntityState {
 		entity.setValue(100.0);
 		entity.incrementTax();
 		entity.disapprove();
+		entity.finalize();
+		System.out.println(entity.getState());
+		System.out.println(entity.getValue());
+	}
+	
+	private static void runTestWithDoubleTaxFlow() {
+		Entity entity = new Entity();
+		entity.setValue(100.0);
+		entity.approve();
+		entity.incrementTax();
+		entity.incrementTax();
 		entity.finalize();
 		System.out.println(entity.getState());
 		System.out.println(entity.getValue());
